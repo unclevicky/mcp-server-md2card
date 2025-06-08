@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "md2card": {
+      "name": "md2card",
+      "description": "Convert Markdown to beautiful cards",
+      "type": "stdio",
+      "command": "node",
+      "args": [
+        "D:\\09.coding\\ai\\aicoding\\MCP\\Server\\mcp-server-md2card\\src\\index.mjs",
+        "--stdio"
+      ]
+    }
+  }
+}

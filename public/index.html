@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCP Markdown Card 测试页面</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        
+        .container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .panel {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        textarea {
+            width: 100%;
+            height: 300px;
+            font-family: monospace;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            resize: vertical;
+        }
+        
+        button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 10px 0;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background-color: #45a049;
+        }
+        
+        select {
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            margin-right: 10px;
+        }
+        
+        .preview {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            min-height: 300px;
+            overflow: auto;
+            background-color: white;
+        }
+        
+        .result {
+            padding: 10px;
+            background-color: #f5f5f5;
+            border-radius: 4px;
+            margin-top: 10px;
+            white-space: pre-wrap;
+            font-family: monospace;
+            font-size: 14px;
+            max-height: 200px;
+            overflow: auto;
+        }
+        
+        .image-preview {
+            max-width: 100%;
+            margin-top: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .book-select {
+            margin-bottom: 15px;
+        }
+        
+        .tabs {
+            display: flex;
+            margin-bottom: 15px;
+        }
+        
+        .tab {
+            padding: 10px 20px;
+            background-color: #eee;
+            cursor: pointer;
+            border-radius: 4px 4px 0 0;
+            border: 1px solid #ddd;
+            border-bottom: none;
+        }
+        
+        .tab.active {
+            background-color: white;
+            border-bottom: 2px solid white;
+            margin-bottom: -2px;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <h1>MCP Markdown Card 测试页面</h1>
+    
+    <div class="tabs">
+        <div class="tab active" data-tab="convert">Markdown 转换</div>
+        <div class="tab" data-tab="notes">读书笔记</div>
+    </div>
+    
+    <div class="tab-content active" id="convert-tab">
+        <div class="container">
+            <div class="panel">
+                <h2>Markdown 输入</h2>
+                <textarea id="markdown-input" placeholder="在这里输入 Markdown 内容...">
+# Markdown 转换测试
+
+这是一个简单的 **Markdown** 测试文档。
+
+## 功能列表
+
+- 支持基本 Markdown 语法
+- 多种主题选择
+- 导出为图片
+- 自定义样式
+
+> 引用文本示例
+
+```javascript
+// 代码示例
+function hello() {
+    console.log("Hello, Markdown!");
+}
+```
+
+![图片描述](https://via.placeholder.com/150)
+
+| 表格 | 示例 | 内容 |
+|------|------|------|
+| 单元格1 | 单元格2 | 单元格3 |
+| 数据1 | 数据2 | 数据3 |
+                </textarea>
+                
+                <div>
+                    <select id="theme-select">
+                        <option value="default">默认主题</option>
+                        <option value="dark">暗色主题</option>
+                        <option value="vintage">复古主题</option>
+                        <option value="modern">现代主题</option>
+                        <option value="reading" selected>阅读主题</option>
+                    </select>
+                    
+                    <input type="checkbox" id="export-image" name="export-image">
+                    <label for="export-image">导出为图片</label>
+                </div>
+                
+                <button id="convert-btn">转换</button>
+            </div>
+            
+            <div class="panel">
+                <h2>预览</h2>
+                <div class="preview" id="preview">
+                    <iframe id="preview-frame" style="width: 100%; height: 500px; border: none;"></iframe>
+                </div>
+                
+                <div class="result" id="result"></div>
+                
+                <img id="image-preview" class="image-preview" style="display: none;" />
+            </div>
+        </div>
+    </div>
+    
+    <div class="tab-content" id="notes-tab">
+        <div class="container">
+            <div class="panel">
+                <h2>读书笔记生成</h2>
+                
+                <div class="book-select">
+                    <label for="book-select">选择书籍:</label>
+                    <select id="book-select">
+                        <option value="深度工作">深度工作</option>
+                        <option value="原子习惯">原子习惯</option>
+                        <option value="思考，快与慢">思考，快与慢</option>
+                        <option value="刻意练习">刻意练习</option>
+                    </select>
+                    
+                    <select id="note-theme-select">
+                        <option value="default">默认主题</option>
+                        <option value="dark">暗色主题</option>
+                        <option value="vintage">复古主题</option>
+                        <option value="modern">现代主题</option>
+                        <option value="reading" selected>阅读主题</option>
+                    </select>
+                    
+                    <input type="checkbox" id="note-export-image" name="note-export-image">
+                    <label for="note-export-image">导出为图片</label>
+                </div>
+                
+                <button id="generate-btn">生成笔记</button>
+            </div>
+            
+            <div class="panel">
+                <h2>笔记预览</h2>
+                <div class="preview" id="note-preview">
+                    <iframe id="note-preview-frame" style="width: 100%; height: 500px; border: none;"></iframe>
+                </div>
+                
+                <div class="result" id="note-result"></div>
+                
+                <img id="note-image-preview" class="image-preview" style="display: none;" />
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 切换标签页
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                tab.classList.add('active');
+                document.getElementById(`${tab.dataset.tab}-tab`).classList.add('active');
+            });
+        });
+        
+        // Markdown 转换
+        document.getElementById('convert-btn').addEventListener('click', async () => {
+            const markdown = document.getElementById('markdown-input').value;
+            const theme = document.getElementById('theme-select').value;
+            const exportImage = document.getElementById('export-image').checked;
+            
+            const resultElement = document.getElementById('result');
+            resultElement.textContent = '处理中...';
+            
+            try {
+                const response = await fetch('/mcp', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        jsonrpc: '2.0',
+                        id: 1,
+                        method: 'invoke',
+                        params: {
+                            toolName: 'convert',
+                            params: {
+                                markdown,
+                                theme,
+                                exportImage
+                            }
+                        }
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (data.error) {
+                    resultElement.textContent = `错误: ${JSON.stringify(data.error)}`;
+                    return;
+                }
+                
+                resultElement.textContent = JSON.stringify(data.result, null, 2);
+                
+                // 显示HTML预览
+                const previewFrame = document.getElementById('preview-frame');
+                previewFrame.srcdoc = data.result.html;
+                
+                // 如果有图片，显示图片预览
+                const imagePreview = document.getElementById('image-preview');
+                if (data.result.image) {
+                    imagePreview.src = data.result.image;
+                    imagePreview.style.display = 'block';
+                } else {
+                    imagePreview.style.display = 'none';
+                }
+            } catch (error) {
+                resultElement.textContent = `请求错误: ${error.message}`;
+            }
+        });
+        
+        // 读书笔记生成
+        document.getElementById('generate-btn').addEventListener('click', async () => {
+            const bookName = document.getElementById('book-select').value;
+            const theme = document.getElementById('note-theme-select').value;
+            const exportImage = document.getElementById('note-export-image').checked;
+            
+            const resultElement = document.getElementById('note-result');
+            resultElement.textContent = '处理中...';
+            
+            try {
+                const response = await fetch('/mcp', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        jsonrpc: '2.0',
+                        id: 2,
+                        method: 'invoke',
+                        params: {
+                            toolName: 'generate-notes',
+                            params: {
+                                bookName,
+                                theme,
+                                exportImage
+                            }
+                        }
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (data.error) {
+                    resultElement.textContent = `错误: ${JSON.stringify(data.error)}`;
+                    return;
+                }
+                
+                resultElement.textContent = JSON.stringify(data.result, null, 2);
+                
+                // 显示HTML预览
+                const previewFrame = document.getElementById('note-preview-frame');
+                previewFrame.srcdoc = data.result.html;
+                
+                // 如果有图片，显示图片预览
+                const imagePreview = document.getElementById('note-image-preview');
+                if (data.result.image) {
+                    imagePreview.src = data.result.image;
+                    imagePreview.style.display = 'block';
+                } else {
+                    imagePreview.style.display = 'none';
+                }
+            } catch (error) {
+                resultElement.textContent = `请求错误: ${error.message}`;
+            }
+        });
+    </script>
+</body>
+</html> 

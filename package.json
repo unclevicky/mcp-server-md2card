@@ -1,0 +1,29 @@
+{
+  "name": "mcp-server-md2card",
+  "version": "1.0.0",
+  "description": "A MCP server that converts markdown to beautiful cards with multiple themes",
+  "type": "module",
+  "main": "src/index.mjs",
+  "scripts": {
+    "start": "node src/index.mjs",
+    "dev": "nodemon src/index.mjs",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.1",
+    "axios": "^1.9.0",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^4.18.2",
+    "highlight.js": "^11.8.0",
+    "marked": "^9.1.2",
+    "puppeteer": "^24.10.0",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "nodemon": "^3.0.1"
+  }
+}
+ 
