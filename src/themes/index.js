@@ -262,329 +262,201 @@ const themes = {
     name: 'reading',
     styles: `
       .markdown-card.reading {
-        font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+        font-family: "PingFang SC", "Microsoft YaHei", -apple-system, BlinkMacSystemFont, sans-serif;
         max-width: 800px;
         margin: 20px auto;
         padding: 40px;
         background: #ffffff;
         border-radius: 16px;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-        border: 1px solid #e8e8e8;
-        line-height: 2;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
         position: relative;
         overflow: hidden;
       }
       
-      .markdown-card.reading:before {
-        content: "";
+      .markdown-card.reading::before {
+        content: '';
         position: absolute;
         top: 0;
         right: 0;
-        width: 150px;
-        height: 150px;
-        background: linear-gradient(135deg, #f8f9fa 25%, transparent 25%);
-        z-index: 1;
-      }
-
-      .markdown-card.reading:after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 0;
         width: 100px;
         height: 100px;
-        background: linear-gradient(45deg, #f4a46011 25%, transparent 25%);
-        z-index: 1;
+        background: linear-gradient(135deg, rgba(255, 156, 74, 0.1) 0%, rgba(255, 156, 74, 0) 100%);
+        border-radius: 0 0 0 100%;
       }
       
       .markdown-card.reading .content {
-        color: #333;
-        position: relative;
-        z-index: 2;
-      }
-
-      /* 标题样式 */
-      .markdown-card.reading h1 {
-        color: #fff;
-        background: linear-gradient(135deg, #f4a460 0%, #e67e22 100%);
-        padding: 12px 25px;
-        border-radius: 8px;
-        display: inline-block;
-        font-size: 1.5em;
-        margin-bottom: 30px;
-        position: relative;
-        box-shadow: 0 4px 12px rgba(230, 126, 34, 0.2);
-      }
-
-      .markdown-card.reading h1:after {
-        content: "";
-        position: absolute;
-        right: -25px;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 40px;
-        height: 2px;
-        background: linear-gradient(90deg, #f4a460 0%, transparent 100%);
+        color: #333333;
+        line-height: 1.8;
+        font-size: 16px;
       }
       
-      /* 二级标题样式 */
-      .markdown-card.reading h2 {
-        color: #2c3e50;
-        font-size: 1.3em;
-        margin: 25px 0 15px;
-        padding-left: 25px;
+      .markdown-card.reading h1 {
+        color: #333333;
+        font-size: 28px;
+        font-weight: 600;
+        margin-bottom: 30px;
+        padding-bottom: 15px;
+        border-bottom: 2px solid #f0f0f0;
         position: relative;
-        display: flex;
-        align-items: center;
       }
-
-      .markdown-card.reading h2:before {
-        content: "";
+      
+      .markdown-card.reading h1::after {
+        content: '';
         position: absolute;
+        bottom: -2px;
         left: 0;
-        top: 50%;
-        transform: translateY(-50%) rotate(45deg);
-        width: 12px;
-        height: 12px;
-        background: linear-gradient(135deg, #4682b4 0%, #5ca0d3 100%);
-        border-radius: 3px;
-        box-shadow: 0 2px 6px rgba(70, 130, 180, 0.2);
+        width: 80px;
+        height: 2px;
+        background: #ff9c4a;
       }
-
-      /* 三级标题样式 */
+      
+      .markdown-card.reading h2 {
+        color: #333333;
+        font-size: 22px;
+        font-weight: 600;
+        margin-top: 35px;
+        margin-bottom: 20px;
+        padding-left: 15px;
+        border-left: 4px solid #ff9c4a;
+      }
+      
       .markdown-card.reading h3 {
-        color: #34495e;
-        font-size: 1.1em;
-        margin: 20px 0 10px;
-        padding-left: 45px;
-        position: relative;
-        display: flex;
-        align-items: center;
+        color: #444444;
+        font-size: 18px;
+        font-weight: 600;
+        margin-top: 25px;
+        margin-bottom: 15px;
       }
-
-      .markdown-card.reading h3:before {
-        content: "";
-        position: absolute;
-        left: 25px;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 8px;
-        height: 8px;
-        background: linear-gradient(135deg, #4682b4 0%, #5ca0d3 100%);
-        border-radius: 50%;
-        box-shadow: 0 2px 4px rgba(70, 130, 180, 0.15);
-      }
-
-      /* 列表样式 */
-      .markdown-card.reading ul {
-        list-style: none;
-        padding-left: 65px;
-        margin: 10px 0;
-        position: relative;
-      }
-
-      .markdown-card.reading ul:before {
-        content: "";
-        position: absolute;
-        left: 45px;
-        top: 0;
-        bottom: 0;
-        width: 2px;
-        background: linear-gradient(180deg, #e8e8e8 0%, #f4f4f4 100%);
-      }
-
-      .markdown-card.reading ul li {
-        position: relative;
-        margin: 12px 0;
+      
+      .markdown-card.reading ul, .markdown-card.reading ol {
         padding-left: 20px;
-        transition: all 0.3s ease;
+        margin-bottom: 20px;
       }
-
-      .markdown-card.reading ul li:hover {
-        transform: translateX(5px);
+      
+      .markdown-card.reading li {
+        margin-bottom: 10px;
+        position: relative;
+        line-height: 1.6;
       }
-
-      .markdown-card.reading ul li:before {
-        content: "";
-        position: absolute;
-        left: -22px;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 6px;
-        height: 6px;
-        background: linear-gradient(135deg, #4682b4 0%, #5ca0d3 100%);
-        border-radius: 50%;
-        box-shadow: 0 2px 4px rgba(70, 130, 180, 0.15);
-      }
-
-      .markdown-card.reading ul li:after {
-        content: "";
+      
+      .markdown-card.reading ul li::before {
+        content: '';
         position: absolute;
         left: -20px;
-        top: 50%;
-        width: 20px;
-        height: 2px;
-        background: linear-gradient(90deg, #e8e8e8 0%, #f4f4f4 100%);
-      }
-
-      /* 引用样式 */
-      .markdown-card.reading blockquote {
-        background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
-        border-left: 4px solid #f4a460;
-        margin: 20px 45px;
-        padding: 15px 25px;
-        color: #666;
-        border-radius: 0 8px 8px 0;
-        position: relative;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-      }
-
-      .markdown-card.reading blockquote:before {
-        content: "";
-        position: absolute;
-        left: -20px;
-        top: 50%;
-        width: 16px;
-        height: 2px;
-        background: linear-gradient(90deg, #f4a460 0%, transparent 100%);
-      }
-
-      /* 分隔线样式 */
-      .markdown-card.reading hr {
-        border: none;
-        height: 2px;
-        background: repeating-linear-gradient(90deg, 
-          #e8e8e8 0px, #e8e8e8 4px, 
-          transparent 4px, transparent 8px
-        );
-        margin: 35px 25px;
-        position: relative;
-      }
-
-      .markdown-card.reading hr:before,
-      .markdown-card.reading hr:after {
-        content: "";
-        position: absolute;
+        top: 8px;
         width: 6px;
         height: 6px;
-        background: #e8e8e8;
+        background: #ff9c4a;
         border-radius: 50%;
-        top: 50%;
-        transform: translateY(-50%);
       }
-
-      .markdown-card.reading hr:before {
-        left: -5px;
+      
+      .markdown-card.reading ol {
+        counter-reset: item;
       }
-
-      .markdown-card.reading hr:after {
-        right: -5px;
+      
+      .markdown-card.reading ol li {
+        counter-increment: item;
       }
-
-      /* 段落样式 */
-      .markdown-card.reading p {
-        padding-left: 45px;
-        position: relative;
-        margin: 15px 0;
-        transition: all 0.3s ease;
-      }
-
-      .markdown-card.reading p:hover {
-        transform: translateX(5px);
-      }
-
-      /* 连接线和装饰 */
-      .markdown-card.reading h2 + ul,
-      .markdown-card.reading h3 + ul {
-        position: relative;
-      }
-
-      .markdown-card.reading h2 + ul:before,
-      .markdown-card.reading h3 + ul:before {
-        content: "";
+      
+      .markdown-card.reading ol li::before {
+        content: counter(item) ".";
+        color: #ff9c4a;
+        font-weight: 600;
         position: absolute;
-        left: 30px;
-        top: -15px;
-        width: 2px;
-        height: calc(100% + 15px);
-        background: linear-gradient(180deg, #e8e8e8 0%, #f4f4f4 100%);
+        left: -20px;
       }
-
-      /* 代码块样式 */
+      
+      .markdown-card.reading code {
+        background: #f8f9fa;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+        font-size: 14px;
+        color: #ff9c4a;
+      }
+      
       .markdown-card.reading pre {
-        margin-left: 45px;
-        background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+        background: #f8f9fa;
         padding: 20px;
         border-radius: 8px;
-        border: 1px solid #eee;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-        position: relative;
         overflow-x: auto;
+        margin: 20px 0;
       }
-
-      .markdown-card.reading pre:before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 4px;
-        background: linear-gradient(90deg, #4682b4 0%, #5ca0d3 100%);
-        border-radius: 4px 4px 0 0;
-        opacity: 0.5;
-      }
-
-      .markdown-card.reading code {
-        font-family: 'JetBrains Mono', 'SFMono-Regular', Consolas, monospace;
-        font-size: 0.9em;
-        color: #e67e22;
-      }
-
-      /* 链接样式 */
+      
       .markdown-card.reading a {
-        color: #4682b4;
+        color: #ff9c4a;
         text-decoration: none;
-        border-bottom: 1px dashed #4682b4;
-        transition: all 0.3s ease;
-        padding: 0 2px;
+        border-bottom: 1px solid transparent;
+        transition: border-color 0.3s;
       }
-
+      
       .markdown-card.reading a:hover {
-        border-bottom-style: solid;
-        background: rgba(70, 130, 180, 0.1);
-        border-radius: 2px;
+        border-bottom-color: #ff9c4a;
       }
-
-      /* 添加页面装饰 */
-      .markdown-card.reading:before {
-        content: "";
-        position: absolute;
-        top: -10px;
-        right: -10px;
-        width: 20px;
-        height: 20px;
-        background: #f4a460;
-        opacity: 0.1;
-        border-radius: 50%;
+      
+      .markdown-card.reading blockquote {
+        margin: 20px 0;
+        padding: 15px 20px;
+        background: #fff9f5;
+        border-left: 4px solid #ff9c4a;
+        border-radius: 0 8px 8px 0;
       }
-
-      /* 添加悬停效果 */
-      .markdown-card.reading h2,
-      .markdown-card.reading h3,
-      .markdown-card.reading blockquote,
-      .markdown-card.reading pre {
-        transition: all 0.3s ease;
+      
+      .markdown-card.reading blockquote p {
+        margin: 0;
+        color: #666666;
       }
-
-      .markdown-card.reading h2:hover,
-      .markdown-card.reading h3:hover {
-        transform: translateX(5px);
+      
+      .markdown-card.reading strong {
+        color: #333333;
+        font-weight: 600;
       }
-
-      .markdown-card.reading blockquote:hover,
-      .markdown-card.reading pre:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      
+      .markdown-card.reading table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+      }
+      
+      .markdown-card.reading th, .markdown-card.reading td {
+        padding: 12px;
+        border: 1px solid #f0f0f0;
+      }
+      
+      .markdown-card.reading th {
+        background: #fff9f5;
+        font-weight: 600;
+        color: #333333;
+      }
+      
+      .markdown-card.reading tr:nth-child(even) {
+        background: #fafafa;
+      }
+      
+      .markdown-card.reading hr {
+        border: none;
+        height: 1px;
+        background: #f0f0f0;
+        margin: 30px 0;
+      }
+      
+      @media (max-width: 768px) {
+        .markdown-card.reading {
+          padding: 20px;
+          margin: 10px;
+        }
+        
+        .markdown-card.reading h1 {
+          font-size: 24px;
+        }
+        
+        .markdown-card.reading h2 {
+          font-size: 20px;
+        }
+        
+        .markdown-card.reading h3 {
+          font-size: 16px;
+        }
       }
     `
   }
