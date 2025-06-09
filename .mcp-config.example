@@ -1,0 +1,35 @@
+{
+    "server": {
+        "port": 3001,
+        "host": "localhost",
+        "url": "http://localhost:3001",
+        "endpoints": {
+            "mcp": "/mcp",
+            "health": "/health"
+        }
+    },
+    "llm": {
+        "api": {
+            "url": "https://api.deepseek.com",
+            "key": "sk-1234567890",
+            "model": "deepseek-r1"
+        }
+    },
+    "features": {
+        "themes": true,
+        "convert": true,
+        "export": true,
+        "generate": true
+    },
+    "themes": ["default", "dark", "vintage", "modern", "reading"],
+    "defaultTheme": "reading",
+    "mcp": {
+        "name": "md2card",
+        "version": "1.0.0",
+        "description": "将Markdown转换为精美卡片",
+        "transport": {
+            "type": "streamableHttp",
+            "endpoint": "http://localhost:3001/mcp"
+        }
+    }
+} 

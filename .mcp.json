@@ -1,9 +1,0 @@
-{
-  "name": "md2card",
-  "version": "1.0.0",
-  "description": "将Markdown转换为精美卡片",
-  "transport": {
-    "type": "http",
-    "endpoint": "http://localhost:3001/mcp"
-  }
-}

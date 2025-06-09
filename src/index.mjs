@@ -22,24 +22,28 @@ function updateMcpConfig() {
       fs.mkdirSync(cursorDir);
     }
     
-    // 确保.cursor/mcp.json文件存在
+    // 检查.cursor/mcp.json文件是否存在
     const mcpConfigPath = path.join(cursorDir, 'mcp.json');
-    const scriptPath = path.resolve(__dirname, 'index.mjs'); // 使用绝对路径
-    const mcpConfig = {
-      "mcpServers": {
-        "md2card": {
-          "name": "md2card",
-          "description": "Convert Markdown to beautiful cards",
-          "type": "stdio",
-          "command": "node",
-          "args": [scriptPath, "--stdio"]
+    if (!fs.existsSync(mcpConfigPath)) {
+      const scriptPath = path.resolve(__dirname, 'index.mjs'); // 使用绝对路径
+      const mcpConfig = {
+        "mcpServers": {
+          "md2card": {
+            "name": "md2card",
+            "description": "Convert Markdown to beautiful cards",
+            "type": "stdio",
+            "command": "node",
+            "args": [scriptPath, "--stdio"]
+          }
         }
-      }
-    };
-    
-    fs.writeFileSync(mcpConfigPath, JSON.stringify(mcpConfig, null, 2));
-    console.log(`MCP配置文件已创建: ${mcpConfigPath}`);
-    console.log(`使用脚本路径: ${scriptPath}`);
+      };
+      
+      fs.writeFileSync(mcpConfigPath, JSON.stringify(mcpConfig, null, 2));
+      console.log(`MCP配置文件已创建: ${mcpConfigPath}`);
+      console.log(`使用脚本路径: ${scriptPath}`);
+    } else {
+      console.log(`MCP配置文件已存在: ${mcpConfigPath}`);
+    }
   } catch (error) {
     console.error('更新MCP配置文件失败:', error);
   }

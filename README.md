@@ -38,6 +38,7 @@ npm install
 ```
 
 2. 配置项目：
+`.mcp-config.example`重命名为`.mcp-config`
 检查 `.mcp-config` 文件并根据需要修改配置：
 ```json
 {
